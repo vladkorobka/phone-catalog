@@ -69,6 +69,11 @@ export const ProductByCategoryPage: React.FC<Props> = ({
 
   const debounceSearch = debounce(async searchQuery => {
     if (products) {
+      // const params = new URLSearchParams(searchParams);
+
+      // params.delete('page');
+      // setCurrentPage(1);
+
       if (searchQuery) {
         setFilteredProducts(filteredArr(products, searchQuery));
       } else {
@@ -101,9 +106,15 @@ export const ProductByCategoryPage: React.FC<Props> = ({
 
   React.useEffect(() => {
     if (products) {
+      const params = new URLSearchParams(searchParams);
+
+      params.delete('page');
+      setSearchParams(params);
+
+      setCurrentPage(1);
       debounceSearch(search);
     }
-  }, [products, search, debounceSearch]);
+  }, [products, search]);
 
   React.useEffect(() => {
     switch (sort) {

@@ -17,6 +17,62 @@ import { ChevronArrowLeft } from '../../helpers/icons';
 import { getSuggestedProducts } from '../../utils';
 import { Product, ProductDetail } from '../../typies';
 
+const pickColor = (color: string) => {
+  const COLORS = {
+    black: 'black',
+    gold: 'gold',
+    yellow: 'yellow',
+    green: 'green',
+    midnightgreen: '#004953',
+    spacegray: '#4B4B4C',
+    red: 'red',
+    white: 'white',
+    purple: 'purple',
+    coral: 'coral',
+    rosegold: '#dea193',
+    midnight: '#191970',
+    spaceblack: '#505150',
+    blue: 'blue',
+    pink: 'pink',
+    sierrablue: '#BFDAF7',
+    graphite: '#41424C',
+    skyblue: '#87CEEB',
+    starlight: '#F8F9EC',
+    silver: 'silver',
+  };
+
+  let colorsKey = '';
+  let tempColor = 'white';
+
+  switch (color) {
+    case 'space gray':
+    case 'space-gray':
+      colorsKey = 'spacegray';
+      break;
+
+    case 'rose gold':
+      colorsKey = 'rosegold';
+      break;
+
+    case 'sky-blue':
+    case 'sky blue':
+      colorsKey = 'skyblue';
+      break;
+
+    default:
+      colorsKey = color;
+  }
+
+  for (const colorItem of Object.keys(COLORS)) {
+    if (colorItem === colorsKey) {
+      tempColor = COLORS[colorItem as keyof typeof COLORS];
+      break;
+    }
+  }
+
+  return tempColor;
+};
+
 type Props = {
   category: string;
 };
@@ -58,6 +114,49 @@ export const ProductDetailsPage: React.FC<Props> = ({ category }) => {
       setSuggestedProducts(getSuggestedProducts(products));
     }
   }, [products, productDetails]);
+
+  // React.useEffect(() => {
+  //   let productColor = 'orange';
+
+  //   if (productDetails) {
+  //     switch (productDetails?.color) {
+  //       case 'space gray':
+  //         productColor = 'spacegray';
+  //         break;
+
+  //       case 'space-gray':
+  //         productColor = 'spacegray';
+  //         break;
+
+  //       case 'rose gold':
+  //         productColor = 'rosegold';
+  //         break;
+
+  //       case 'sky-blue':
+  //         productColor = 'skyblue';
+  //         break;
+
+  //       default:
+  //         productColor = productDetails.color;
+  //     }
+
+  //     // for (const i in COLORS) {
+  //     //   if (COLORS[i as keyof typeof COLORS] === productColor) {
+  //     //     productColor = COLORS[i as keyof typeof COLORS];
+  //     //     break;
+  //     //   }
+  //     // }
+
+  //     for (const colorItem of Object.keys(COLORS)) {
+  //       if (colorItem === productColor) {
+  //         productColorRef.current = COLORS[colorItem as keyof typeof COLORS];
+  //         break;
+  //       }
+  //     }
+
+  //     console.log(productColorRef.current);
+  //   }
+  // }, [productDetails]);
 
   React.useEffect(() => {
     const fetchData = async () => {
@@ -190,9 +289,12 @@ export const ProductDetailsPage: React.FC<Props> = ({ category }) => {
                         )}
                       >
                         <button
+                          data-color={color}
                           type="button"
                           className={styles.colorItemButton}
-                          style={{ backgroundColor: `${color}` }}
+                          style={{
+                            backgroundColor: `${pickColor(color)}`,
+                          }}
                           onClick={() => handleColorClick(color)}
                         ></button>
                       </li>

@@ -93,6 +93,7 @@ export const Header = () => {
               className={styles.search}
               value={search}
               onChange={handleSearchChange}
+              placeholder="Search..."
             />
           </div>
         )}
