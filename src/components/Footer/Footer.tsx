@@ -31,7 +31,7 @@ export const Footer = () => {
             Contacts
           </a>
 
-          <a href="/#" className={styles.rights} onClick={scrollToTop}>
+          <a href="/#/" className={styles.rights} onClick={scrollToTop}>
             Rights
           </a>
         </section>
