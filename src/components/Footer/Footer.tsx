@@ -14,7 +14,7 @@ export const Footer = () => {
 
         <section className={styles.links}>
           <a
-            href="https://github.com/vladkorobka/react_phone-catalog"
+            href="https://github.com/vladkorobka/phone-catalog"
             className={styles.github}
             target="_blank"
             rel="noreferrer"
@@ -22,11 +22,16 @@ export const Footer = () => {
             Github
           </a>
 
-          <a href="#/" className={styles.contacts}>
+          <a
+            href="https://www.linkedin.com/in/vladyslav-korobka-48273ba7/"
+            target="_blank"
+            className={styles.contacts}
+            rel="noreferrer"
+          >
             Contacts
           </a>
 
-          <a href="#/" className={styles.rights}>
+          <a href="/#" className={styles.rights} onClick={scrollToTop}>
             Rights
           </a>
         </section>
